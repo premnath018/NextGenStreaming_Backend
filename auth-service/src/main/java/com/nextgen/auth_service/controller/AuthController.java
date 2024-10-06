@@ -5,6 +5,7 @@ import com.nextgen.auth_service.dto.AuthRequest;
 import com.nextgen.auth_service.entity.UserCredential;
 import com.nextgen.auth_service.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -19,12 +20,12 @@ public class AuthController {
     private AuthenticationManager authenticationManager;
 
     @PostMapping("/register")
-    public String addNewUser(@RequestBody UserCredential user){
+    public ResponseEntity<String> addNewUser(@RequestBody UserCredential user){
         System.out.println(user);
         return service.saveUser(user);
     }
 
-    @PostMapping("/token")
+    @PostMapping("/login")
     public String getToken(@RequestBody AuthRequest authRequest){
         Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(),authRequest.getPassword()));
         if(authenticate.isAuthenticated()) {

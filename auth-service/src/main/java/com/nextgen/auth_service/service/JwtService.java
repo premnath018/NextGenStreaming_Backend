@@ -15,12 +15,17 @@ import java.util.Map;
 public class JwtService {
 
 
-    public static final String SECRET = "5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437";
+    public static final String SECRET = "5367566B4D625DF5G4H8J6T6YJ7O8KM6H7G6BN7K4V5BNK1655468576D5A71347437";
 
 
-    public void validateToken(final String token) {
-        Jwts.parserBuilder().setSigningKey(getSignKey()).build().parseClaimsJws(token);
+    public void validateToken(String token)  {
+        try {
+            Jwts.parserBuilder().setSigningKey(getSignKey()).build().parseClaimsJws(token);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Expired or invalid JWT token");
+        }
     }
+
 
 
     public String generateToken(String userName) {
