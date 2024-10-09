@@ -2,7 +2,7 @@ spring:
   config:
     import: optional:file:../.env[.properties]
   application:
-    name : postgres-db
+    name : auth-service
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_DATABASE}
@@ -20,6 +20,4 @@ eureka:
       defaultzone : http://localhost:8761/eureka/
 server:
   port: 9898
-logging:
-  level:
-    org.springframework.security: DEBUG
+

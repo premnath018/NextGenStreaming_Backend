@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 
 import com.nextgen.auth_service.DTO.ApiResponse;
 
@@ -24,4 +25,12 @@ public class ValidException {
         ApiResponse response = new ApiResponse(false, "Validation failed", errors);
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<ApiResponse> handleHttpMessageNotReadableException(HttpMessageNotReadableException ex) {
+        ApiResponse response = new ApiResponse(false, "Invalid input. Please check the provided data.", null);
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    // You can also add more custom exception handlers here if needed
 }

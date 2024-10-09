@@ -30,8 +30,7 @@
             return http
                     .csrf(AbstractHttpConfigurer::disable)
                     .authorizeHttpRequests(auth -> auth
-                            .requestMatchers("/auth/signup", "/auth/login","/auth/forgot-password","/auth/reset-password").permitAll()
-                            .requestMatchers("/auth/check-email/**", "/auth/check-username/**").permitAll() // Allow access without login
+                            .requestMatchers("/auth/**").permitAll()
                             .requestMatchers("/admin/**").hasRole("ADMIN")
                             .anyRequest().hasAnyRole("USER", "ADMIN")
                     )
