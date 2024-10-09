@@ -11,9 +11,15 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+  cloud:
+    discovery:
+      enabled : false
 eureka:
   client:
     service-url:
       defaultzone : http://localhost:8761/eureka/
 server:
   port: 9898
+logging:
+  level:
+    org.springframework.security: DEBUG

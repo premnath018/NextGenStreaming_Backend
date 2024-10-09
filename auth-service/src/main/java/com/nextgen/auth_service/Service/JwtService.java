@@ -1,4 +1,4 @@
-package com.nextgen.auth_service.service;
+package com.nextgen.auth_service.Service;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -25,8 +25,6 @@ public class JwtService {
             throw new IllegalArgumentException("Expired or invalid JWT token");
         }
     }
-
-
 
     public String generateToken(String userName) {
         Map<String, Object> claims = new HashMap<>();

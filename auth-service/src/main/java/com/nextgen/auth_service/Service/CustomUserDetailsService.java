@@ -1,7 +1,7 @@
-package com.nextgen.auth_service.service;
+package com.nextgen.auth_service.Service;
 
-import com.nextgen.auth_service.entity.UserCredential;
-import com.nextgen.auth_service.repository.UserCredentialRepository;
+import com.nextgen.auth_service.Model.UserCredential;
+import com.nextgen.auth_service.Repository.UserCredentialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,12 +13,21 @@ import java.util.Optional;
 @Component
 public class CustomUserDetailsService implements UserDetailsService {
 
-    @Autowired
     private UserCredentialRepository repository;
+
+    @Autowired
+    public void setRepository(UserCredentialRepository repository) {
+        this.repository = repository;
+    }
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<UserCredential> credential = repository.findByName(username);
-        return credential.map(CustomUserDetails::new).orElseThrow(()->new UsernameNotFoundException("User Not foumd" + username));
+        Optional<UserCredential> credential = repository.findByUsername(username);
+
+        return credential
+                .map(CustomUserDetails::new)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
     }
+
 }

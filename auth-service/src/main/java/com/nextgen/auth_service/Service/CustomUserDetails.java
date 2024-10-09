@@ -1,6 +1,6 @@
-package com.nextgen.auth_service.service;
+package com.nextgen.auth_service.Service;
 
-import com.nextgen.auth_service.entity.UserCredential;
+import com.nextgen.auth_service.Model.UserCredential;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -10,10 +10,12 @@ import java.util.List;
 public class CustomUserDetails implements UserDetails {
     private final String username;
     private final String password;
+    private final String role;
 
     public CustomUserDetails(UserCredential userCredential){
         this.username = userCredential.getName();
         this.password = userCredential.getPassword();
+        this.role = userCredential.getRole();
     }
 
     @Override
@@ -30,6 +32,8 @@ public class CustomUserDetails implements UserDetails {
     public String getUsername() {
         return username;
     }
+
+    public String getRole() {return role;}
 
     @Override
     public boolean isAccountNonExpired() {
