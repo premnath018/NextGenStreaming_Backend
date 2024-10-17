@@ -1,37 +1,27 @@
-# Stage 1: Build the native binary with GraalVM
-FROM vegardit/graalvm-maven:21.0.2 AS builder
+# Stage 1: Build the application
+FROM jelastic/maven:3.9.5-openjdk-21 AS build
 
-# Invalidate cache with a dummy argument
-ARG CACHEBUST=1
-
-# Set working directory
+# Set the working directory
 WORKDIR /app
 
-# Copy only the pom.xml and download dependencies first to cache Maven dependencies
+# Copy the pom.xml and the source code
 COPY pom.xml .
+COPY src ./src
 
-# Download dependencies
-RUN mvn dependency:go-offline -B
+# Build the application
+RUN mvn clean package -DskipTests
 
-# Now copy the rest of the project files
-COPY . .
+# Stage 2: Run the application
+FROM openjdk:21-jdk-slim
 
-# Build the native image
-RUN mvn package -Pnative native:compile -DskipTests
-
-# Stage 2: Create a minimal runtime image with Alpine Linux
-FROM alpine:3.18
-
-# Install GCC and necessary libraries for running the binary
-RUN apk add --no-cache libc-dev gcompat
-
+# Set the working directory
 WORKDIR /app
 
-# Copy the native binary from the builder stage
-COPY --from=builder /app/target/auth_service /app/auth_service
+# Copy the JAR file from the build stage
+COPY --from=build /app/target/*.jar auth-service.jar
 
-# Expose the service port
+# Expose the application port (change as needed)
 EXPOSE 9898
 
-# Run the native binary
-ENTRYPOINT ["/app/auth_service"]
+# Run the application
+ENTRYPOINT ["java", "-jar", "auth-service.jar"]

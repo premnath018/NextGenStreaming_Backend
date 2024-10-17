@@ -11,9 +11,9 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-#  cloud:
-#    discovery:
-#      enabled : false
+  cloud:
+    discovery:
+      enabled : false
 eureka:
   client:
     service-url:

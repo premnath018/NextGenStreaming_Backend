@@ -6,6 +6,7 @@ import com.nextgen.auth_service.DTO.AuthRequest;
 import com.nextgen.auth_service.Model.UserCredential;
 import com.nextgen.auth_service.Service.AuthService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,11 +20,15 @@ import java.util.Map;
 @RequestMapping("/auth")
 public class AuthController {
 
-    private final AuthService authService;
-    private final AuthenticationManager authenticationManager;
+    private AuthService authService;
+    private AuthenticationManager authenticationManager;
 
-    public AuthController(AuthService authService, AuthenticationManager authenticationManager) {
+    @Autowired
+    public void setAuthService(AuthService authService) {
         this.authService = authService;
+    }
+    @Autowired
+    public void setAuthenticationManager(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
     }
 

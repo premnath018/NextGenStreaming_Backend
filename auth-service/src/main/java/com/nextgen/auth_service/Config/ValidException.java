@@ -31,6 +31,4 @@ public class ValidException {
         ApiResponse response = new ApiResponse(false, "Invalid input. Please check the provided data.", null);
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
-
-    // You can also add more custom exception handlers here if needed
 }

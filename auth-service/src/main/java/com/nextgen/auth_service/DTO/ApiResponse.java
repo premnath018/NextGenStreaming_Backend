@@ -31,6 +31,11 @@ public class ApiResponse {
         this.errors = errors;
     }
 
+    public ApiResponse(boolean success, Object data) {
+        this.success = success;
+        this.data = data;
+    }
+
     // Parameterized constructor with data (for success responses)
     public ApiResponse(boolean success, String message, Object data) {
         this.success = success;
