@@ -31,4 +31,11 @@ public class ValidException {
         ApiResponse response = new ApiResponse(false, "Invalid input. Please check the provided data.", null);
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ApiResponse> handleException(Exception ex) {
+        ApiResponse response = new ApiResponse(false, "An unexpected error occurred: " + ex.getMessage(), null);
+        return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
 }
