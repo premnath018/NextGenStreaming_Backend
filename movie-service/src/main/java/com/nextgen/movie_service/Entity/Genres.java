@@ -12,7 +12,7 @@ public class Genres {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "genere_name" , nullable = false)
+    @Column(name = "genre_name" , nullable = false)
     private String Geners;
 
 }

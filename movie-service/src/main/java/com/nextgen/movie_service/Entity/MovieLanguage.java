@@ -22,6 +22,6 @@ public class MovieLanguage {
     private Movies movies;
 
     @ManyToOne
-    @JoinColumn(name = "language_id", referencedColumnName = "language_id")
+    @JoinColumn(name = "language_id", referencedColumnName = "id")
     private Language language;
 }

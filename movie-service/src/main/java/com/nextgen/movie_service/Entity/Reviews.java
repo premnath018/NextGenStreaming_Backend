@@ -22,10 +22,11 @@ public class Reviews {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id", referencedColumnName = "id")
+    @JoinColumn(name = "movie_id", referencedColumnName = "id")
     private Movies movies;
 
-    //User_id
+    @Column(nullable = false, name = "user_id")
+    private long User;
 
     @Column(nullable = false, name = "rating")
     private float rating;

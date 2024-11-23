@@ -20,12 +20,12 @@ public class WatchList {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, name = "user_id")
+    private long User;
+
     @ManyToOne
     @JoinColumn(name = "movie_id", referencedColumnName = "id")
     private Movies movie;
-
-    //User_id
-
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
