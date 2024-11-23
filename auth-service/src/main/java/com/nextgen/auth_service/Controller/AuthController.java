@@ -34,9 +34,12 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<ApiResponse> registerUser(@Valid @RequestBody UserCredential credential) {
-        authService.saveUser(credential);
-        ApiResponse response = new ApiResponse(true, "User registered successfully");
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        if (authService.saveUser(credential)){
+            ApiResponse response = new ApiResponse(true, "User registered successfully");
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        }
+        ApiResponse response = new ApiResponse(false, "Username or Email Already Exists.");
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
 
     @PostMapping("/login")

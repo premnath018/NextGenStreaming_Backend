@@ -29,12 +29,18 @@ public class AuthService {
         this.jwtService = jwtService;
     }
 
-    public int saveUser(UserCredential credential) {
+    public boolean saveUser(UserCredential credential) {
+
+
+        if (userExistsByUsername(credential.getUsername()) || userExistsByEmail(credential.getEmail()))  {
+            return false;
+        }
+
         credential.setPassword(passwordEncoder.encode(credential.getPassword()));
         credential.setRole("USER");
         UserCredential savedUser = repository.save(credential);
 
-        return savedUser.getId();
+        return true;
     }
 
     public void updateLastLogin(String username) {

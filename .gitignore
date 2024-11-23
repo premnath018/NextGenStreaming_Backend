@@ -2,5 +2,5 @@
 .idea
 /cassandra-db/src/main/resources/secure-connect
 /cassandra-db/src/main/resources/secure-connect.zip
-/cassandra-db/out
-/cassandra-db/dockerfile
+/auth-service/out
+/auth-service/dockerfile
