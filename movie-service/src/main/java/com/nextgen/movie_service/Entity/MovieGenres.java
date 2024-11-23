@@ -18,6 +18,6 @@ public class MovieGenres {
 
     @ManyToOne
     @JoinColumn(name = "genre_id", referencedColumnName = "id")
-    private Geners genre;
+    private Genres genre;
 
 }

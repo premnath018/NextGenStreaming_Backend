@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Geners {
+public class Genres {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
