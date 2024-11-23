@@ -1,11 +1,10 @@
 package com.nextgen.movie_service.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -14,5 +13,14 @@ public class MovieActors {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
+    @ManyToOne
+    @JoinColumn(name = "movie_id" , referencedColumnName = "id")
+    Movies movies;
+
+    @ManyToOne
+    @JoinColumn(name = "actor_id" , referencedColumnName = "id")
+    Actors actors;
+
+
 }

@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class MovieGeners {
+public class MovieGenres {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,6 +17,7 @@ public class MovieGeners {
     private Movies movie;
 
     @ManyToOne
-    @JoinColumn(name = "gener_id", referencedColumnName = "id")
-    private Geners gener;
+    @JoinColumn(name = "genre_id", referencedColumnName = "id")
+    private Geners genre;
+
 }

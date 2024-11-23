@@ -81,4 +81,6 @@ public class Movies {
     @Column(nullable = false, name = "updated_at") // Maps to the 'updated_at' column
     private Date updatedAt;
 
+
+
 }

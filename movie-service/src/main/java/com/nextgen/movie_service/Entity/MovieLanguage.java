@@ -17,11 +17,11 @@ public class MovieLanguage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToMany                 //ReleationShip need to be checked & change
+    @ManyToOne
     @JoinColumn(name = "movie_id", referencedColumnName = "id")
-    private Movies movie_id;
+    private Movies movies;
 
     @ManyToOne
     @JoinColumn(name = "language_id", referencedColumnName = "language_id")
-    private Language language_id;
+    private Language language;
 }

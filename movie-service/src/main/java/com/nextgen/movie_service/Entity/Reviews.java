@@ -22,8 +22,8 @@ public class Reviews {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "movie_id", referencedColumnName = "id")
-    private Movies movie_id;
+    @JoinColumn(name = "id", referencedColumnName = "id")
+    private Movies movies;
 
     //User_id
 
@@ -31,7 +31,7 @@ public class Reviews {
     private float rating;
 
     @Column(nullable = false, name = "review_text")
-    private String Review_text;
+    private String review;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)

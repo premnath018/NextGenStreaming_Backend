@@ -7,6 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -15,15 +16,25 @@ public class Actors {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "full_name" , nullable = false)
     private String name;
-    private String photo_url;
+
+    @Column(name = "image_url" , nullable = true)
+    private String photoUrl;
+
+    @Column(name = "actor_description" , nullable = true)
     private String description;
     @CreationTimestamp
+
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false, updatable = false)
-    private Date Created_at;
+    @Column(name = "created_at" ,nullable = false, updatable = false)
+    private Date createdAt;
+
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false)
-    private Date Updated_at;
+    @Column(name = "updated_at"  ,nullable = false)
+    private Date updatedAt;
+
+
 }
