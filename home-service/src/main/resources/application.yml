@@ -7,9 +7,9 @@ eureka:
     instance:
       hostname: localhost
 server:
-  port: 8081
+  port: 8000
 
 spring:
   application:
-    name: HOME-SERVICE
+    name: home-service
 

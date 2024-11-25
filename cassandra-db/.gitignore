@@ -15,7 +15,7 @@ target/
 
 ## Secure Connect
 
-/src/main/resources/secure-connect.zip
+/secure-connect.zip
 /src/main/resources/secure-connect
 ### IntelliJ IDEA ###
 .idea
