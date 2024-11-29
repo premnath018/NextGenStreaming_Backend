@@ -1,5 +1,5 @@
 server:
-  port: 8002
+  port: 8071
 spring:
   config:
     import: optional:file:../.env[.properties]
@@ -17,6 +17,7 @@ spring:
       connection:
         connect-timeout: ${CASSANDRA_CONNECTION_TIMEOUT}
         init-query-timeout: ${CASSANDRA_INIT_QUERY_TIMEOUT}
+      schema-action: create-if-not-exists
   cloud:
     discovery:
       enabled: false
