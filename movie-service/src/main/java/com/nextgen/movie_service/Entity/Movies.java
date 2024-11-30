@@ -45,9 +45,8 @@ public class Movies {
     private String duration;
 
     // Rating field
-    @NotNull(message = "Rating is mandatory") // Ensures rating is not null
-    @Column(name = "rating") // Maps to the 'rating' column
-    private int rating;
+    @Column(name = "rating" , nullable = true) // Maps to the 'rating' column
+    private float rating;
 
     // Filepath field
     @NotBlank(message = "File path is mandatory") // Ensures file path is not blank
